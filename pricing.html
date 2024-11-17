@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - AutoSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(to right bottom, #3b49df, #3b82f6);
+        }
+        
+        .pricing-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-[#3b49df]">AutoSync</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#features" class="text-gray-600 hover:text-[#3b49df]">Features</a>
+                    <a href="index.html#platforms" class="text-gray-600 hover:text-[#3b49df]">Platforms</a>
+                    <a href="index.html#howItWorks" class="text-gray-600 hover:text-[#3b49df]">How It Works</a>
+                    <a href="pricing.html" class="text-[#3b49df] font-semibold">Pricing</a>
+                    <a href="demo.html" class="bg-[#3b49df] text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                        Take Demo
+                    </a>
+                </div>
+                <button class="md:hidden text-gray-600 hover:text-[#3b49df]" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden py-4 mobile-nav">
+                <a href="index.html#features" class="text-gray-600 hover:text-[#3b49df]">Features</a>
+                <a href="index.html#platforms" class="text-gray-600 hover:text-[#3b49df]">Platforms</a>
+                <a href="index.html#howItWorks" class="text-gray-600 hover:text-[#3b49df]">How It Works</a>
+                <a href="demo.html" class="bg-[#3b49df] text-white px-6 py-2 rounded-lg hover:bg-blue-700 w-full text-center">
+                    Take Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 py-20 text-white text-center">
+            <h1 class="text-5xl font-bold mb-4">Simple, Transparent Pricing</h1>
+            <p class="text-xl">Choose the perfect plan for your dealership's growth</p>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="max-w-7xl mx-auto px-4 py-16 -mt-10">
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Starter Package -->
+            <div class="pricing-card bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-[#3b49df] mb-4">Starter</h3>
+                    <div class="text-4xl font-bold mb-4">$299<span class="text-xl text-gray-600">/mo</span></div>
+                    <p class="text-gray-600">Up to 50 vehicles</p>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>AutoTrader.ca Integration</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Kijiji Autos Integration</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Website Sync</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Basic Instagram Posts</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Email Support</span>
+                    </li>
+                </ul>
+
+                <a href="demo.html" class="block w-full bg-emerald-500 text-white text-center py-3 rounded-lg hover:bg-emerald-600 transition">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Professional Package -->
+            <div class="pricing-card bg-white rounded-xl shadow-lg p-8 border-2 border-[#3b49df] relative transform scale-105">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span class="bg-emerald-500 text-white px-6 py-1 rounded-full text-sm">Most Popular</span>
+                </div>
+
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-[#3b49df] mb-4">Professional</h3>
+                    <div class="text-4xl font-bold mb-4">$499<span class="text-xl text-gray-600">/mo</span></div>
+                    <p class="text-gray-600">Up to 150 vehicles</p>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>All Starter Features</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>AutoHebdo.net Integration</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Premium Instagram Templates</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Bilingual Listings (EN/FR)</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Priority Support</span>
+                    </li>
+                </ul>
+
+                <a href="demo.html" class="block w-full bg-[#3b49df] text-white text-center py-3 rounded-lg hover:bg-blue-700 transition">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Enterprise Package -->
+            <div class="pricing-card bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-[#3b49df] mb-4">Enterprise</h3>
+                    <div class="text-4xl font-bold mb-4">$899<span class="text-xl text-gray-600">/mo</span></div>
+                    <p class="text-gray-600">Unlimited vehicles</p>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>All Professional Features</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Multi-Location Support</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Custom API Access</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Advanced Analytics</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check text-emerald-500"></i>
+                        <span>Dedicated Account Manager</span>
+                    </li>
+                </ul>
+
+                <a href="demo.html" class="block w-full bg-emerald-500 text-white text-center py-3 rounded-lg hover:bg-emerald-600 transition">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Features -->
+        <div class="mt-16 text-center">
+            <h3 class="text-2xl font-bold text-[#3b49df] mb-8">All plans include:</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <i class="fas fa-check-circle text-emerald-500 text-2xl mb-3"></i>
+                    <p class="font-semibold">14-Day Free Trial</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <i class="fas fa-clock text-emerald-500 text-2xl mb-3"></i>
+                    <p class="font-semibold">5 Minutes Daily Setup</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <i class="fas fa-headset text-emerald-500 text-2xl mb-3"></i>
+                    <p class="font-semibold">Free Onboarding</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <i class="fas fa-times-circle text-emerald-500 text-2xl mb-3"></i>
+                    <p class="font-semibold">Cancel Anytime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="bg-white py-20">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-[#3b49df] text-center mb-12">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-semibold mb-2">Do I need to enter a credit card for the trial?</h3>
+                    <p class="text-gray-600">No, you can start your 14-day trial without entering any payment information.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-semibold mb-2">Can I change plans later?</h3>
+                    <p class="text-gray-600">Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="font-semibold mb-2">What happens after the trial?</h3>
+                    <p class="text-gray-600">After the trial, you can choose to subscribe to any of our plans or your account will be automatically paused.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">AutoSync</h4>
+                    <p class="text-gray-400">Global automotive marketing solution</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms</a></li>
+                        <li><a href="#" class="hover:text-white">GDPR</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 AutoSync. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+        <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            
+            if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
