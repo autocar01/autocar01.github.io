@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Demo - AutoSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(to right bottom, #1e40af, #3b82f6);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-input:focus {
+            border-color: #10B981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateX(150%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .loading-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-blue-900">AutoSync</a>
+                <div class="flex space-x-6">
+                    <a href="index.html#features" class="text-gray-600 hover:text-blue-900">Features</a>
+                    <a href="index.html#howItWorks" class="text-gray-600 hover:text-blue-900">How It Works</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 py-16 text-white">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h1 class="text-4xl font-bold mb-4">Schedule Your Personalized Demo</h1>
+                <p class="text-xl">See how AutoSync can transform your dealership's digital presence</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-12 -mt-10">
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Demo Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8 animate-fade-in">
+                <h2 class="text-2xl font-bold text-blue-900 mb-6">Book Your Demo</h2>
+                <form id="demoForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">First Name</label>
+                            <input type="text" name="firstName" required
+                                class="w-full p-3 border rounded-lg form-input"
+                                placeholder="John">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Last Name</label>
+                            <input type="text" name="lastName" required
+                                class="w-full p-3 border rounded-lg form-input"
+                                placeholder="Smith">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">Business Email</label>
+                        <input type="email" name="email" required
+                            class="w-full p-3 border rounded-lg form-input"
+                            placeholder="john@yourdealership.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">Dealership Name</label>
+                        <input type="text" name="dealershipName" required
+                            class="w-full p-3 border rounded-lg form-input"
+                            placeholder="Smith Motors">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" name="phone" required
+                            class="w-full p-3 border rounded-lg form-input"
+                            placeholder="(555) 123-4567">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 mb-2">Dealership Size</label>
+                        <select name="dealershipSize" class="w-full p-3 border rounded-lg form-input" required>
+                            <option value="">Select size...</option>
+                            <option value="small">Small (1-50 vehicles)</option>
+                            <option value="medium">Medium (51-200 vehicles)</option>
+                            <option value="large">Large (201+ vehicles)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Preferred Date</label>
+                            <input type="date" name="preferredDate" required
+                                class="w-full p-3 border rounded-lg form-input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Preferred Time</label>
+                            <select name="preferredTime" class="w-full p-3 border rounded-lg form-input" required>
+                                <option value="">Select time...</option>
+                                <option value="morning">Morning (9AM - 12PM)</option>
+                                <option value="afternoon">Afternoon (1PM - 5PM)</option>
+                                <option value="evening">Evening (6PM - 8PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-emerald-500 text-white py-3 rounded-lg hover:bg-emerald-600 transition flex items-center justify-center space-x-2">
+                        <span>Schedule Demo</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Info Section -->
+            <div class="space-y-8">
+                <!-- What to Expect -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6">What to Expect</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-gray-600">Personalized platform walkthrough</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-gray-600">Live demonstration of multi-platform publishing</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-gray-600">AI chatbot capabilities showcase</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-gray-600">Q&A session with our experts</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 mb-4">
+                                "The demo was incredibly helpful in understanding how AutoSync could streamline our operations. We've seen a 85% reduction in listing time since implementing the platform."
+                            </p>
+                            <p class="font-semibold text-blue-900">Mike Johnson</p>
+                            <p class="text-sm text-gray-500">Sales Director, Premier Motors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Success Notification -->
+    <div id="notification" class="notification bg-emerald-500 text-white">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-check-circle text-xl"></i>
+            <div>
+                <h4 class="font-bold">Success!</h4>
+                <p>We'll contact you shortly to confirm your demo.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        function formatFormData(form) {
+            const formData = new FormData(form);
+            let message = '🆕 New Demo Request\n\n';
+            
+            message += `👤 Name: ${formData.get('firstName')} ${formData.get('lastName')}\n`;
+            message += `📧 Email: ${formData.get('email')}\n`;
+            message += `🏢 Dealership: ${formData.get('dealershipName')}\n`;
+            message += `📞 Phone: ${formData.get('phone')}\n`;
+            message += `📊 Size: ${formData.get('dealershipSize')}\n`;
+            message += `📅 Date: ${formData.get('preferredDate')}\n`;
+            message += `⏰ Time: ${formData.get('preferredTime')}`;
+            
+            return encodeURIComponent(message);
+        }
+
+        async function sendToTelegram(message) {
+            const botToken = '7679220743:AAGnwVQbimglfg1L4Xg1Pz8vE8Ct4uYrU2c';
+            const chatId = '8053070166';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+                return false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for date picker
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[type="date"]').min = today;
+            
+            // Add form submit handler
+            const form = document.getElementById('demoForm');
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                
+                try {
+                    showLoading();
+                    
+                    // Format and send the message
+                    const message = formatFormData(form);
+                    const sent = await sendToTelegram(message);
+                    
+                    hideLoading();
+                    
+                    if (sent) {
+                        showNotification();
+                        form.reset();
+                    } else {
+                        alert('There was an issue submitting your request. Please try again later.');
+                    }
+                } catch (error) {
+                    hideLoading();
+                    console.error('Form submission error:', error);
+                    alert('There was an issue submitting your request. Please try again later.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
