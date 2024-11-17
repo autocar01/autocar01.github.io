@@ -4,240 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoSync - Automotive Marketing Platform</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(to bottom right, #1e3a8a, #1e40af);
+        .hero-gradient {
+            background: linear-gradient(to right bottom, #1e40af, #3b82f6);
         }
         
-        /* Button hover animations */
-        .btn-animate {
-            transition: all 0.3s ease;
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in;
         }
         
-        .btn-animate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Slide-up animation */
-        .slide-up {
-            animation: slideUp 0.5s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Floating animation for cards */
-        .float-animation {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Progress line animation */
-        .progress-line {
-            width: 0;
-            height: 2px;
-            background: #10B981;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Card hover effect */
-        .feature-card {
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Glowing effect for CTA */
-        .glow-effect {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 5px #10B981, 0 0 10px #10B981;
-            }
-            to {
-                box-shadow: 0 0 10px #10B981, 0 0 20px #10B981;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="min-h-screen bg-white">
-    <!-- Progress Line -->
-    <div class="progress-line" id="progressLine"></div>
-
+<body>
     <!-- Navigation -->
-    <nav class="flex items-center justify-between p-6 bg-white border-b fixed w-full top-0 z-50">
-        <div class="flex items-center">
-            <a href="#" class="text-2xl font-bold text-blue-900 hover:text-blue-700 transition">
-                <span class="slide-up">AutoSync</span>
-            </a>
-        </div>
-        <div class="flex items-center gap-8">
-            <a href="#success" class="text-gray-700 hover:text-gray-900 transition btn-animate">Success Stories</a>
-            <a href="#features" class="text-gray-700 hover:text-gray-900 transition btn-animate">Features</a>
-            <a href="demo.html" class="px-6 py-2 text-white bg-emerald-500 rounded-lg hover:bg-emerald-600 transition btn-animate">
-                Take Demo
-            </a>
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-blue-900">AutoSync</div>
+                <div class="flex space-x-6">
+                    <a href="#features" class="text-gray-600 hover:text-blue-900">Features</a>
+                    <a href="#howItWorks" class="text-gray-600 hover:text-blue-900">How It Works</a>
+                    <a href="demo.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                        Take Demo
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="gradient-bg text-white mt-20">
-        <div class="container mx-auto px-4 py-24">
-            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-5xl font-bold mb-6 slide-up">
-                    Transform Your Dealership's
-                    <br>Digital Presence
-                </h2>
-                <p class="text-xl text-blue-100 mb-12 leading-relaxed slide-up">
-                    One platform to manage all your vehicle listings. Publish instantly across marketplaces, social media, and your website.
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 py-20 text-white">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h1 class="text-5xl font-bold mb-6">Transform Your Dealership's Digital Presence</h1>
+                <p class="text-xl mb-8">
+                    Streamline your vehicle listings across all platforms with our automated marketing solution.
                 </p>
-                <div class="flex gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
-                    <a href="demo.html" class="px-8 py-4 bg-emerald-500 rounded-lg hover:bg-emerald-600 transition flex items-center gap-2 btn-animate glow-effect">
-                        Get Started Now
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                <div class="flex justify-center space-x-4">
+                    <a href="demo.html" class="bg-emerald-500 hover:bg-emerald-600 px-8 py-3 rounded-lg inline-flex items-center">
+                        Get Started
+                        <i class="fas fa-arrow-right ml-2"></i>
                     </a>
-                    <a href="#how-it-works" class="px-8 py-4 bg-white/10 rounded-lg hover:bg-white/20 transition btn-animate">
-                        View Demo
+                    <a href="#demo" class="bg-white/20 hover:bg-white/30 px-8 py-3 rounded-lg">
+                        Watch Demo
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Stats Section -->
-    <div class="bg-gray-50" id="success">
-        <div class="container mx-auto px-4 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="feature-card bg-white p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-emerald-600">
-                        <i data-lucide="clock" class="w-6 h-6"></i>
-                    </div>
-                    <div class="text-4xl font-bold text-blue-900 mb-2">85%</div>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Time Saved</h3>
-                    <p class="text-gray-600">on listing management</p>
-                </div>
-
-                <div class="feature-card bg-white p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-emerald-600">
-                        <i data-lucide="globe" class="w-6 h-6"></i>
-                    </div>
-                    <div class="text-4xl font-bold text-blue-900 mb-2">3x</div>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Wider Reach</h3>
-                    <p class="text-gray-600">across platforms</p>
-                </div>
-
-                <div class="feature-card bg-white p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-emerald-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-emerald-600">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <div class="text-4xl font-bold text-blue-900 mb-2">24/7</div>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Customer Support</h3>
-                    <p class="text-gray-600">with AI assistance</p>
-                </div>
+    <!-- Features Section -->
+    <div id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">Key Features</h2>
+                <p class="text-gray-600 text-xl">Everything you need for successful automotive marketing</p>
             </div>
-        </div>
-    </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                    <div class="text-emerald-500 mb-4">
+                        <i class="fas fa-sync-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Multi-Platform Sync</h3>
+                    <p class="text-gray-600">Post once, publish everywhere. Save time and maintain consistency.</p>
+                </div>
 
-    <!-- Process Section -->
-    <div class="py-24" id="how-it-works">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-blue-900 mb-4">How It Works</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Our streamlined process makes it effortless to manage your vehicle listings across all platforms
-                </p>
-            </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                    <div class="text-emerald-500 mb-4">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">AI Chat Support</h3>
+                    <p class="text-gray-600">24/7 automated customer service and lead qualification.</p>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Step cards similar to stats section but with process steps -->
-                <!-- Add process steps here with similar structure to stats cards -->
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                    <div class="text-emerald-500 mb-4">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Analytics Dashboard</h3>
+                    <p class="text-gray-600">Track performance and optimize your listings in real-time.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-emerald-500 text-white">
-        <div class="container mx-auto px-4 py-16">
-            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-3xl font-bold mb-6">
-                    Ready to Transform Your Dealership's Digital Presence?
-                </h2>
-                <p class="text-lg mb-8 text-emerald-50">
-                    Join thousands of dealerships already using AutoSync to streamline their vehicle listings
-                </p>
-                <a href="demo.html" 
-                   class="inline-flex px-8 py-4 bg-white text-emerald-600 rounded-lg hover:bg-emerald-50 transition items-center gap-2 btn-animate glow-effect">
-                    Schedule a Demo
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </a>
-            </div>
+    <div class="bg-emerald-500 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="text-xl mb-8">Transform your dealership's digital presence today.</p>
+            <a href="demo.html" class="bg-white text-emerald-500 px-8 py-3 rounded-lg inline-flex items-center hover:bg-gray-100">
+                Schedule a Demo
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
         </div>
     </div>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Initialize AOS animations
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Progress bar on scroll
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressLine').style.width = scrolled + '%';
-        });
-
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('slide-up');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        // Observe all feature cards
-        document.querySelectorAll('.feature-card').forEach((card) => {
-            observer.observe(card);
-        });
-    </script>
 </body>
 </html>
