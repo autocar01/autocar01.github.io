@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Elite Motors Maroc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #ffd700;
+            --text: #2c3e50;
+            --bg: #f8fafc;
+            --whatsapp: #25D366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                display: none;
+            }
+            
+            .mobile-contact {
+                display: flex;
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-contact {
+                display: none;
+            }
+        }
+
+        .dealer-section {
+            margin-top: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .dealer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .dealer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .dealer-logo {
+                margin: 0 auto;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        .dealer-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .main {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .image-gallery {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .gallery-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-img.active {
+            opacity: 1;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: white;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .gallery-prev {
+            left: 1rem;
+        }
+
+        .gallery-next {
+            right: 1rem;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-button {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .avito {
+            background: #6AB96A;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #833AB4, #E1306C);
+        }
+
+        .whatsapp {
+            background: var(--whatsapp);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            flex: 1;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn.whatsapp {
+            background: var(--whatsapp);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .map-section {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .map-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://png.pngtree.com/png-vector/20220816/ourmid/pngtree-sport-car-logo-template-design-vector-dealer-garage-shape-vector-png-image_38440368.png" alt="Logo" class="logo">
+                <h1>Elite Motors</h1>
+            </div>
+            <div class="contact-info">
+                <div><i data-lucide="phone"></i> 0680263129</div>
+                <div><i data-lucide="map-pin"></i> 2 Mars, Casablanca</div>
+            </div>
+            <div class="mobile-contact">
+                <a href="tel:0680263129"><i data-lucide="phone"></i></a>
+                <a href="#map"><i data-lucide="map-pin"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="dealer-section">
+        <div class="dealer-content">
+            <img src="https://png.pngtree.com/png-vector/20220816/ourmid/pngtree-sport-car-logo-template-design-vector-dealer-garage-shape-vector-png-image_38440368.png" alt="Logo" class="dealer-logo">
+            <div>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem">
+                    Votre Concessionnaire de Confiance
+                </h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div style="font-size: 2rem; font-weight: bold">7+</div>
+                        <div>Années d'Expérience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2rem; font-weight: bold">500+</div>
+                        <div>Voitures Vendues</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2rem; font-weight: bold">100%</div>
+                        <div>Satisfaction Client</div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-button avito">
+                        <i data-lucide="shopping-bag"></i>
+                        Avito
+                    </a>
+                    <a href="#" class="social-button instagram">
+                        <i data-lucide="instagram"></i>
+                        Instagram
+                    </a>
+                    <a href="#" class="social-button whatsapp">
+                        <i data-lucide="message-circle"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center">
+            Nos Véhicules Disponibles
+        </h2>
+        <div class="grid" id="listings"></div>
+    </main>
+
+    <section class="map-section" id="map">
+        <div class="map-container">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; margin-bottom: 2rem">
+                Notre Location
+            </h2>
+            <iframe class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.846447673348!2d-7.632238684855042!3d33.592679880730744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM1JzMzLjciTiA3wrAzNyc1Ni4xIlc!5e0!3m2!1sen!2sma!4v1635942358830!5m2!1sen!2sma"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div style="max-width: 1280px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem">Elite Motors</h3>
+            <p>2 Mars, Casablanca, Maroc</p>
+            <p>Tél: 0680263129</p>
+            <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                <a href="#" class="social-button avito">
+                    <i data-lucide="shopping-bag"></i>
+                    Avito
+                </a>
+                <a href="#" class="social-button instagram">
+                    <i data-lucide="instagram"></i>
+                    Instagram
+                </a>
+                <a href="#" class="social-button whatsapp">
+                    <i data-lucide="message-circle"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const listings = [
+            {
+                id: '54802185',
+                subject: 'Ford Mondeo',
+                description: 'Ford Mondeo diesel 8 ch, très bon état',
+                price: '39.000 DH',
+                images: [
+                    'https://content.avito.ma/classifieds/images/10126983258?t=full_hd',
+                    'https://content.avito.ma/classifieds/images/10126983257?t=full_hd',
+                    'https://content.avito.ma/classifieds/images/10126983260?t=full_hd'
+                ],
+                year: '2018'
+            },
+            {
+                id: '53443988',
+                subject: 'Dacia Duster',
+                description: 'Dacia Duster diesel 6 ch modèle 2019, boite automatique, démarrage start, toutes options',
+                price: '165.000 DH',
+                images: ['https://content.avito.ma/classifieds/images/10127623756?t=full_hd'],
+                year: '2019'
+            }
+        ];
+
+        function createCarCard(listing) {
+            const gallery = `
+                <div class="image-gallery">
+                    ${listing.images.map((img, idx) => `
+                        <img src="${img}" alt="${listing.subject}" class="gallery-img ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+                    `).join('')}
+                    ${listing.images.length > 1 ? `
+                        <div class="gallery-arrow gallery-prev" onclick="prevImage(this)">
+                            <i data-lucide="chevron-left"></i>
+                        </div>
+                        <div class="gallery-arrow gallery-next" onclick="nextImage(this)">
+                            <i data-lucide="chevron-right"></i>
+                        </div>
+                        <div class="gallery-nav">
+                            ${listing.images.map((_, idx) => `
+                                <div class="gallery-dot ${idx === 0 ? 'active' : ''}" onclick="showImage(this, ${idx})"></div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    <div class="price-tag">${listing.price}</div>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem">${listing.subject}</h3>
+                    <div style="color: #666; margin-bottom: 1rem;">
+                        <span><i data-lucide="calendar"></i> ${listing.year}</span>
+                        <span style="margin-left: 1rem;"><i data-lucide="map-pin"></i> 2 Mars</span>
+                    </div>
+                    <p style="color: #666; margin-bottom: 1rem;">${listing.description}</p>
+                    <div class="contact-buttons">
+                        <button class="contact-btn" onclick="contactDealer('${listing.subject}')">
+                            <i data-lucide="phone"></i> Appeler
+                        </button>
+                        <button class="contact-btn whatsapp" onclick="contactWhatsApp('${listing.subject}')">
+                            <i data-lucide="message-circle"></i> WhatsApp
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return `<div class="card animate__animated animate__fadeIn">${gallery}</div>`;
+        }
+
+        function showImage(dot, index) {
+            const gallery = dot.closest('.image-gallery');
+            const images = gallery.querySelectorAll('.gallery-img');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextImage(arrow) {
+            const gallery = arrow.closest('.image-gallery');
+            const images = gallery.querySelectorAll('.gallery-img');
+            const currentIndex = parseInt(gallery.querySelector('.gallery-img.active').dataset.index);
+            const nextIndex = (currentIndex + 1) % images.length;
+            
+            showImage(gallery.querySelector('.gallery-dot'), nextIndex);
+        }
+
+        function prevImage(arrow) {
+            const gallery = arrow.closest('.image-gallery');
+            const images = gallery.querySelectorAll('.gallery-img');
+            const currentIndex = parseInt(gallery.querySelector('.gallery-img.active').dataset.index);
+            const prevIndex = (currentIndex - 1 + images.length) % images.length;
+            
+            showImage(gallery.querySelector('.gallery-dot'), prevIndex);
+        }
+
+        function contactDealer(carModel) {
+            const phone = '0680263129';
+            window.location.href = `tel:${phone}`;
+        }
+
+        function contactWhatsApp(carModel) {
+            const phone = '212680263129';
+            const message = `Bonjour, je suis intéressé par ${carModel}`;
+            window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        }
+
+        document.getElementById('listings').innerHTML = listings.map(createCarCard).join('');
+        lucide.createIcons();
+    </script>
+</body>
+</html>
