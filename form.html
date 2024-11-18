@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSync - Solution pour Concessionnaires Marocains</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css" rel="stylesheet">
+    <style>
+        /* Base Colors and Variables */
+        :root {
+            --primary-color: #c81e1e;
+            --hover-color: #a01818;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --success-color: #4CAF50;
+            --error-color: #f44336;
+            --morocco-red: #c81e1e;
+            --morocco-green: #006233;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header and Description */
+        .header {
+            background: linear-gradient(135deg, var(--morocco-red), var(--morocco-green));
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            gap: 15px;
+        }
+
+        .benefit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Form Container */
+        .survey-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(200,30,30,0.2);
+        }
+
+        /* Radio and Checkbox Groups */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Submit Button */
+        button {
+            background-color: var(--morocco-red);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        /* Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--morocco-red);
+            border-radius: 50%;
+            margin: 10px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .benefit-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AutoSync Maroc</h1>
+        <p>Optimisez votre présence digitale automobile au Maroc</p>
+        <p>Gérez toutes vos annonces automobiles depuis une seule plateforme</p>
+        
+        <div class="benefits">
+            <span class="benefit-item">✨ Publication automatique</span>
+            <span class="benefit-item">🚀 Gain de temps</span>
+            <span class="benefit-item">📈 Plus de visibilité</span>
+            <span class="benefit-item">💰 Meilleur ROI</span>
+        </div>
+    </div>
+
+    <div class="survey-container">
+        <form id="dealerSurvey" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label>Nom de la concession*</label>
+                <input type="text" name="dealer_name" required placeholder="Nom de votre entreprise">
+            </div>
+
+            <div class="form-group">
+                <label>Téléphone*</label>
+                <input type="tel" name="phone" required placeholder="06/07XXXXXXXX" 
+                       pattern="^(06|07)\d{8}$" 
+                       oninput="validatePhone(this)">
+                <div class="error-message" id="phone-error">
+                    Le numéro doit commencer par 06 ou 07 et contenir 10 chiffres
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ville*</label>
+                <select name="city" required>
+                    <option value="">Sélectionnez votre ville</option>
+                    <option value="casablanca">Casablanca</option>
+                    <option value="rabat">Rabat</option>
+                    <option value="marrakech">Marrakech</option>
+                    <option value="tanger">Tanger</option>
+                    <option value="agadir">Agadir</option>
+                    <option value="fes">Fès</option>
+                    <option value="meknes">Meknès</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Combien de voitures publiez-vous mensuellement ?*</label>
+                <select name="monthly_cars" required>
+                    <option value="">Sélectionnez une option</option>
+                    <option value="1-10">1-10 voitures</option>
+                    <option value="11-30">11-30 voitures</option>
+                    <option value="31-50">31-50 voitures</option>
+                    <option value="50+">Plus de 50 voitures</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Plateformes utilisées actuellement:</label>
+                <div class="radio-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="avito" name="platforms" value="avito">
+                        <label for="avito">Avito</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="moteur" name="platforms" value="moteur.ma">
+                        <label for="moteur">Moteur.ma</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="wandaloo" name="platforms" value="wandaloo.com">
+                        <label for="wandaloo">Wandaloo.com</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto24" name="platforms" value="auto24.ma">
+                        <label for="auto24">Auto24.ma</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Réseaux sociaux utilisés:</label>
+                <div class="radio-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facebook" name="social" value="facebook">
+                        <label for="facebook">Facebook</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="instagram" name="social" value="instagram">
+                        <label for="instagram">Instagram</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="whatsapp" name="social" value="whatsapp">
+                        <label for="whatsapp">WhatsApp Business</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Temps consacré à la publication d'annonces par semaine:*</label>
+                <select name="time_spent" required>
+                    <option value="">Sélectionnez une option</option>
+                    <option value="1-5">1-5 heures</option>
+                    <option value="6-10">6-10 heures</option>
+                    <option value="11-20">11-20 heures</option>
+                    <option value="20+">Plus de 20 heures</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Budget mensuel envisagé pour une solution de gestion centralisée (MAD):*</label>
+                <select name="budget" required>
+                    <option value="">Sélectionnez une option</option>
+                    <option value="0-500">0-500 MAD</option>
+                    <option value="501-1000">501-1000 MAD</option>
+                    <option value="1001-2000">1001-2000 MAD</option>
+                    <option value="2000+">Plus de 2000 MAD</option>
+                </select>
+            </div>
+
+            <div class="spinner" id="submitSpinner"></div>
+            <button type="submit">Envoyer la demande</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"></script>
+    <script>
+        function validatePhone(input) {
+            const errorElement = document.getElementById('phone-error');
+            const isValid = /^(06|07)\d{8}$/.test(input.value);
+            
+            if (input.value && !isValid) {
+                errorElement.style.display = 'block';
+                input.setCustomValidity('Invalid phone number');
+            } else {
+                errorElement.style.display = 'none';
+                input.setCustomValidity('');
+            }
+        }
+
+        function showNotification(message, isSuccess) {
+            Toastify({
+                text: message,
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: isSuccess ? "#4CAF50" : "#f44336",
+                stopOnFocus: true
+            }).showToast();
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            document.getElementById('submitSpinner').style.display = 'block';
+            
+            const formData = new FormData(event.target);
+            let message = "🚗 Nouvelle demande AutoSync:\n\n";
+            
+            // Format message for Telegram
+            message += `📍 Concession: ${formData.get('dealer_name')}\n`;
+            message += `📱 Téléphone: ${formData.get('phone')}\n`;
+            message += `🏢 Ville: ${formData.get('city')}\n`;
+            message += `🚙 Voitures/mois: ${formData.get('monthly_cars')}\n\n`;
+            
+            // Get platforms
+            const platforms = Array.from(document.querySelectorAll('input[name="platforms"]:checked'))
+                                 .map(cb => cb.value);
+            message += `🌐 Plateformes: ${platforms.join(', ') || 'Aucune'}\n`;
+            
+            // Get social media
+            const social = Array.from(document.querySelectorAll('input[name="social"]:checked'))
+                               .map(cb => cb.value);
+            message += `📱 Réseaux sociaux: ${social.join(', ') || 'Aucun'}\n\n`;
+            
+            message += `⏱️ Temps hebdo: ${formData.get('time_spent')}\n`;
+            message += `💰 Budget: ${formData.get('budget')} MAD`;
+
+            const telegramEndpoint = "https://api.telegram.org/bot7679220743:AAGnwVQbimglfg1L4Xg1Pz8vE8Ct4uYrU2c/sendMessage";
+            const chatId = "8053070166";
+
+            fetch(`${telegramEndpoint}?chat_id=${chatId}&text=${encodeURIComponent(message)}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('submitSpinner').style.display = 'none';
+                if(data.ok) {
+                    showNotification('Votre demande a été envoyée avec succès! Nous vous contacterons bientôt.', true);
+                    event.target.reset();
+                } else {
+                    showNotification('Erreur lors de l\'envoi. Veuillez réessayer.', false);
+                }
+            })
+            .catch(error => {
+                document.getElementById('submitSpinner').style.display = 'none';
+                console.error('Error:', error);
+                showNotification('Err
